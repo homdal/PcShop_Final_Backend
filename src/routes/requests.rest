@@ -1,0 +1,176 @@
+// USERS
+
+### GET All users (admin only):
+GET http://localhost:5000/api/v1/users
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NGFkZGMyOThhYzExZmZlODIzMGQiLCJpYXQiOjE3MTA4NDU1NzB9.kBacncidNM0h1q0VC_k4EWM2QoFHh4yZfjagkooKWmY
+
+### POST register a user (anyone):
+POST http://localhost:5000/api/v1/users
+Content-Type: application/json
+
+{
+"contactInfo":{
+ "firstName":"Abc",
+ "lastName":"Abc",
+ "email":"abc@fake.com",
+ "phone":"054-1234567"
+    },
+"password":"!Aa1234",
+"address":{
+    "country":"Israel",
+    "city":"Jerusalem",
+    "street":"Metzada",
+    "houseNumber":"5",
+    "zip":"151515"
+},
+"isEmployee":false
+}
+
+
+### POST Login (admin): 
+POST http://localhost:5000/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "admin@fake.com",
+  "password": "!Aa1234"
+}
+### POST Login (employee): 
+POST http://localhost:5000/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "employee@fake.com",
+  "password": "!Aa1234"
+}
+### POST Login (customer): 
+POST http://localhost:5000/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "customer@fake.com",
+  "password": "!Aa1234"
+}
+
+### GET get user by id (the user or admin only):
+GET http://localhost:5000/api/v1/users/65f84addc298ac11ffe8230d
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NGFkZGMyOThhYzExZmZlODIzMGQiLCJpYXQiOjE3MTA4NDU2NTN9.RsnFioTgLlez4_c33qqRhsBxQqczB9UH8gGc5ub_Ll8
+
+### PUT update user (the user only):
+PUT http://localhost:5000/api/v1/users/65bbc21dc403d5851f665bb0
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWJiYzIxZGM0MDNkNTg1MWY2NjViYjAiLCJpYXQiOjE3MDcxMjc0Mjl9.AB2bfFx0Aq2oHURlYdu_eKeelcvYYBscxqVxVNJ3d4o
+Content-Type: application/json
+
+{
+"contactInfo":{
+ "firstName":"Ben",
+ "lastName":"Benson",
+ "email":"ben@fake.com",
+ "phone":"054-1234567"
+    },
+"password":"!Aa1234",
+"address":{
+    "country":"Israel",
+    "city":"Jerusalem",
+    "street":"Metzada",
+    "houseNumber":"5",
+    "zip":"151515"
+},
+"isEmployee":false
+}
+
+### DELETE delete user (admin only):
+DELETE http://localhost:5000/api/v1/users/65968d59f897150ae8f216e8
+Authorization: bearer 
+
+### PATCH change user's admin status (admin only):
+PATCH http://localhost:5000/api/v1/users/65897fd2ec9ea67bbdefab73
+Authorization: bearer
+Content-Type: application/json
+
+{
+  "isAdmin":true
+}
+
+//Products
+
+### POST add a new product (employee only):
+POST http://localhost:5000/api/v1/products
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NGFkZGMyOThhYzExZmZlODIzMGQiLCJpYXQiOjE3MTA4NDU4NDd9.KwjvdzPJByuF-ngWXJM6AirJ1Z1mMzJZTF5sPus8ZAM
+Content-Type: application/json
+
+{
+    "name":"Razer Headphones",
+    "category":"periphery",
+    "subCategory":"Headphones",
+    "description":"Razer Headphones",
+    "stock":1,
+    "warranty":"2 years",
+    "manufacturer":"Razer",
+    "productModel":"XD12333",
+    "color":"green",
+    "imageUrl":"http://localhost:5000/images/products/2024-03-05-periphery.jpg",
+    "dimensions":{"height":"","width":"","length":"","weight":""},
+    "specifications":[],
+  "price":3000
+}
+
+### GET get new products:
+GET http://localhost:5000/api/v1/products/new
+
+//Orders
+
+### POST create a new order:
+POST http://localhost:5000/api/v1/orders/
+Content-Type: application/json
+
+{
+  "customer":{
+    "contactInfo":{
+      "firstName":"Jane",
+      "lastName":"Janey",
+      "email":"jane@fake.com",
+      "phone":"0542589431"
+    },
+    "address":{
+      "country":"Israel",
+      "city":"Tel-Aviv",
+      "street":"Street",
+      "houseNumber":"12",
+      "zip":"123456"
+    }
+  },
+  "items":[
+    {
+      "productId":"65f834b75437578e0ffea731",
+      "name":"Gaming desktop Intel",
+      "quantity":1,
+      "pricePer":6000,
+      "priceCol":6000
+    }
+  ],
+  "total":6000,
+  "deliveryOption":"Deliver to customer home"
+}
+
+### GET get all orders (employees only):
+GET http://localhost:5000/api/v1/orders
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NGFkZGMyOThhYzExZmZlODIzMGQiLCJpYXQiOjE3MTA4NDU2NTN9.RsnFioTgLlez4_c33qqRhsBxQqczB9UH8gGc5ub_Ll8
+
+### GET get order by order number:
+GET http://localhost:5000/api/v1/orders/3730
+
+### GET user orders:
+GET http://localhost:5000/api/v1/orders/my-orders
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NGFkZGMyOThhYzExZmZlODIzMGQiLCJpYXQiOjE3MTA4NDU2NTN9.RsnFioTgLlez4_c33qqRhsBxQqczB9UH8gGc5ub_Ll8
+
+### PATCH change order status by order id(employees only):
+PATCH http://localhost:5000/api/v1/orders/65f97fdd2352efc559a79626
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY4NGFkZGMyOThhYzExZmZlODIzMGQiLCJpYXQiOjE3MTA4NDU2NTN9.RsnFioTgLlez4_c33qqRhsBxQqczB9UH8gGc5ub_Ll8
+Content-Type: application/json
+
+{
+  "status":"complete"
+}
+
+
