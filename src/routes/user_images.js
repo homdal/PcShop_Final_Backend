@@ -40,7 +40,7 @@ router.post("/", upload.single("userImage"), async (req, res, next) => {
     const image = new Image({
       originalName: req.file.originalname,
       newName: imageName,
-      imageUrl: `http://localhost:5000/images/users/${imageName}`,
+      imageUrl: `https://pcshop-backend.onrender.com/images/users/${imageName}`,
     });
     const savedImage = await image.save();
     res.json(savedImage);

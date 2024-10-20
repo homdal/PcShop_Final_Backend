@@ -37,19 +37,19 @@ const initDB = async () => {
       product.added.by = admin._id;
       if (product.category === "desktop") {
         product.imageUrl =
-          "http://localhost:5000/images/products/2024-02-27-alienware.jpg";
+          "https://pcshop-backend.onrender.com/images/products/2024-02-27-alienware.jpg";
       }
       if (product.category === "laptop") {
         product.imageUrl =
-          "http://localhost:5000/images/products/2024-03-05-laptop.jpg";
+          "https://pcshop-backend.onrender.com/images/products/2024-03-05-laptop.jpg";
       }
       if (product.category === "hardware") {
         product.imageUrl =
-          "http://localhost:5000/images/products/2024-03-05-hardware.jpg";
+          "https://pcshop-backend.onrender.com/images/products/2024-03-05-hardware.jpg";
       }
       if (product.category === "periphery") {
         product.imageUrl =
-          "http://localhost:5000/images/products/2024-03-05-periphery.jpg";
+          "https://pcshop-backend.onrender.com/images/products/2024-03-05-periphery.jpg";
       }
       for (let option of tagOptions) {
         if (product[option]) {
