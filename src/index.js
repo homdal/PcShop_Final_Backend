@@ -22,7 +22,7 @@ connect();
 const app = express();
 app.use(
   cors({
-    origin: "https://pcshop-backend.onrender.com",
+    origin: "https://homdal.github.io",
   })
 );
 
