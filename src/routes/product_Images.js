@@ -8,6 +8,7 @@ import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const connection = process.env.CLIENT_URL;
 
 const router = Router();
 const storage = multer.diskStorage({
@@ -44,7 +45,7 @@ router.post(
       const image = new Image({
         originalName: req.file.originalname,
         newName: imageName,
-        imageUrl: `https://pcshop-backend.onrender.com/images/products/${imageName}`,
+        imageUrl: `${connection}/images/products/${imageName}`,
       });
       const savedImage = await image.save();
       console.log(savedImage);

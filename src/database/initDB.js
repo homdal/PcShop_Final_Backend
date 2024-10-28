@@ -8,6 +8,7 @@ import { products } from "./initial_products.js";
 import { orders } from "./initial_orders.js";
 
 const initDB = async () => {
+  const connection = process.env.CLIENT_URL;
   const usersCount = await User.countDocuments();
   const productCount = await Product.countDocuments();
   const orderCount = await Order.countDocuments();
@@ -36,20 +37,16 @@ const initDB = async () => {
       product.added.on = new Date();
       product.added.by = admin._id;
       if (product.category === "desktop") {
-        product.imageUrl =
-          "https://pcshop-backend.onrender.com/images/products/2024-02-27-alienware.jpg";
+        product.imageUrl = `${connection}/images/products/2024-02-27-alienware.jpg`;
       }
       if (product.category === "laptop") {
-        product.imageUrl =
-          "https://pcshop-backend.onrender.com/images/products/2024-03-05-laptop.jpg";
+        product.imageUrl = `${connection}/images/products/2024-03-05-laptop.jpg`;
       }
       if (product.category === "hardware") {
-        product.imageUrl =
-          "https://pcshop-backend.onrender.com/images/products/2024-03-05-hardware.jpg";
+        product.imageUrl = `${connection}/images/products/2024-03-05-hardware.jpg`;
       }
       if (product.category === "periphery") {
-        product.imageUrl =
-          "https://pcshop-backend.onrender.com/images/products/2024-03-05-periphery.jpg";
+        product.imageUrl = `${connection}/images/products/2024-03-05-periphery.jpg`;
       }
       for (let option of tagOptions) {
         if (product[option]) {

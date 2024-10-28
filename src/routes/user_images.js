@@ -1,6 +1,5 @@
 import { Router } from "express";
 import path from "path";
-import EshopError from "../error/error.js";
 import multer from "multer";
 import Image from "../database/model/image.js";
 import { fileURLToPath } from "url";
@@ -8,6 +7,7 @@ import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const connection = process.env.CLIENT_URL;
 
 const router = Router();
 const storage = multer.diskStorage({
@@ -40,7 +40,7 @@ router.post("/", upload.single("userImage"), async (req, res, next) => {
     const image = new Image({
       originalName: req.file.originalname,
       newName: imageName,
-      imageUrl: `https://pcshop-backend.onrender.com/images/users/${imageName}`,
+      imageUrl: `${connection}/images/users/${imageName}`,
     });
     const savedImage = await image.save();
     res.json(savedImage);
