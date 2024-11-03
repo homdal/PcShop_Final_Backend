@@ -22,7 +22,7 @@ router.get("/", isEmployee, async (req, res, next) => {
 router.get("/new", async (req, res, next) => {
   try {
     const today = new Date();
-    today.setUTCDate(today.getUTCDate() - 14);
+    today.setUTCDate(today.getUTCDate() - 180);
     const newProducts = await Product.find({
       "added.on": { $lte: new Date(), $gte: today },
     });
